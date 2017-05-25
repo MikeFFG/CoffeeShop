@@ -1,5 +1,7 @@
 package com.cs665.main;
 
+import java.util.Scanner;
+
 import com.cs665.coffeeshop.CoffeeShopFacade;
 import com.cs665.coffeeshop.Drink;
 import com.cs665.coffeeshop.DrinkComponent;
@@ -7,23 +9,33 @@ import com.cs665.customerProfile.Profile;
 import com.cs665.customerProfile.ProfileManager;
 import com.cs665.util.MockDB;
 
-import java.util.Scanner;
-
 /**
  * Created by mburke on 5/23/17.
  */
 public class Main {
     private static Scanner sc = new Scanner(System.in);
+    // Singleton/Facade/Factory
     private static CoffeeShopFacade coffeeShopFacade = CoffeeShopFacade.getCoffeeShopFacadeSingleton();
 
     public static void main(String[] args) {
         System.out.println("Welcome to my Coffee Shop.");
 
-        Profile customer = getCustomerProfile();
-        DrinkComponent myDrink = getCustomerDrinkChoice();
-        myDrink = getCustomerExtraChoice(myDrink);
+        Profile customer = getCustomerProfile();    // Uses proxy
 
-        System.out.println(myDrink.getPrice());
+        // Uses decorator
+        DrinkComponent myDrink = getCustomerDrinkChoice();
+
+        System.out.println("Here is our extras menu. " +
+                "Type the corresponding number to add to your drink. Type 0 to finish order.");
+        boolean keepGoing = true;
+        while (keepGoing) {
+            coffeeShopFacade.printExtrasMenu();
+            int extraChoice = sc.nextInt();
+            if (extraChoice == 0) { break; }
+            myDrink = getCustomerExtraChoice(myDrink, extraChoice);
+        }
+
+        System.out.println("Your drink costs: " + myDrink.getPrice());
     }
 
     private static Drink getCustomerDrinkChoice() {
@@ -39,12 +51,8 @@ public class Main {
         }
     }
 
-    private static DrinkComponent getCustomerExtraChoice(DrinkComponent drink) {
-        System.out.println("Here is our extras menu. Type the corresponding number to start an Order.");
-        coffeeShopFacade.printExtrasMenu();
-        int extraChoice = sc.nextInt();
-
-        switch (extraChoice) {
+    private static DrinkComponent getCustomerExtraChoice(DrinkComponent drink, int choice) {
+        switch (choice) {
             case 1:
                 return CoffeeShopFacade.addExtraShot(drink);
             case 2:
