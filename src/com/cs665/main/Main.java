@@ -7,7 +7,7 @@ import com.cs665.coffeeshop.Drink;
 import com.cs665.coffeeshop.DrinkComponent;
 import com.cs665.customerProfile.Profile;
 import com.cs665.customerProfile.ProfileManager;
-import com.cs665.util.MockDB;
+import com.cs665.customerProfile.ProfileManagerProxy;
 
 /**
  * Created by mburke on 5/23/17.
@@ -16,6 +16,8 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
     // Singleton/Facade/Factory
     private static CoffeeShopFacade coffeeShopFacade = CoffeeShopFacade.getCoffeeShopFacadeSingleton();
+    // Singleton/Proxy
+    private static ProfileManager profileManagerProxy = ProfileManagerProxy.getProfileManagerSingleton();
 
     public static void main(String[] args) {
         System.out.println("Welcome to my Coffee Shop.");
@@ -35,7 +37,8 @@ public class Main {
             myDrink = getCustomerExtraChoice(myDrink, extraChoice);
         }
 
-        System.out.println("Your drink costs: " + myDrink.getPrice());
+        System.out.println("Your drink costs: ");
+        System.out.format("$%.2f%n", myDrink.getPrice());
     }
 
     private static Drink getCustomerDrinkChoice() {
@@ -69,11 +72,7 @@ public class Main {
         System.out.println("Do you have a customer ID? If so, enter it now. If not, type 0.");
         int customerID = sc.nextInt();
         if (customerID != 0) {
-            try {
-                customer = ProfileManager.getProfile(customerID);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            customer = profileManagerProxy.getProfile(customerID);
             if (customer == null) {
                 throw new IllegalArgumentException("Invalid customerID.");
             }
@@ -89,6 +88,6 @@ public class Main {
         System.out.println("Creating you a new profile.");
         System.out.println("What is your name?");
         String name = sc.next();
-        return new Profile(MockDB.generateNewCustomerID(), name, null);
+        return new Profile(profileManagerProxy.generateNewCustomerID(), name, null);
     }
 }

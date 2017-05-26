@@ -1,7 +1,6 @@
 package com.cs665.customerProfile;
 
 import com.cs665.coffeeshop.DrinkComponent;
-import com.cs665.util.MockDB;
 
 /**
  * Created by mburke on 5/23/17.
@@ -15,7 +14,6 @@ public class Profile {
         this.customerID = customerID;
         this.customerName = customerName;
         this.favoriteMenuItem = favoriteMenuItem;
-        MockDB.add(this);
     }
 
     public int getCustomerID() {
