@@ -45,13 +45,13 @@ public class Main {
 
             System.out.println("Your drink costs: ");
             System.out.format("$%.2f%n", myDrink.getPrice());
+            coffeeShopFacade.addDrinkToOrder(order, myDrink);
 
             System.out.println("Would you like to add another drink? 1 for yes, 2 for no.");
             int choice = sc.nextInt();
             if (choice == 1) {
                 continue;
             } else if (choice == 2) {
-                coffeeShopFacade.addDrinkToOrder(order, myDrink);
                 break;
             } else {
                 throw new IllegalArgumentException("Invalid choice");

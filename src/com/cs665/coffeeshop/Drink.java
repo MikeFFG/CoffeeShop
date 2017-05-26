@@ -11,6 +11,7 @@ public abstract class Drink extends DrinkComponent {
     }
     @Override
     public void display() {
-        System.out.println(name + " - " + price);
+        System.out.print(name + " - ");
+        System.out.format("$%.2f%n", price);
     }
 }

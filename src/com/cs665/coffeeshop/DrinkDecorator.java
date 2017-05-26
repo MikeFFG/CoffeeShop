@@ -20,6 +20,7 @@ public abstract class DrinkDecorator extends DrinkComponent {
     @Override
     public void display() {
         baseItem.display();
-        System.out.println("\t + " + name + " - " + price);
+        System.out.print("\t + " + name + " - ");
+        System.out.format("$%.2f%n", price);
     }
 }

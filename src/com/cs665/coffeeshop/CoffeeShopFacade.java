@@ -19,6 +19,8 @@ public class CoffeeShopFacade {
         return order;
     }
 
+    /* Display methods */
+
     public void printOrder(Order order) {
         order.displayOrder();
     }
@@ -30,6 +32,8 @@ public class CoffeeShopFacade {
     public void printExtrasMenu() {
         Menu.printExtrasMenu();
     }
+
+    /* Factory methods */
 
     public Drink createLargeCoffee() {
         return new LargeCoffee();

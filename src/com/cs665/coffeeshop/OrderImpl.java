@@ -38,12 +38,12 @@ public class OrderImpl extends Order {
 
     @Override
     public void displayOrder() {
-        System.out.println("Your order is: ");
+        System.out.println("Your order is:\n");
         for (DrinkComponent drink : drinks) {
             drink.display();
             System.out.println();
         }
-        System.out.println("For a total of: ");
+        System.out.print("For a total of ");
         System.out.format("$%.2f%n", this.getTotal());
 
     }
