@@ -5,7 +5,7 @@ package com.cs665.coffeeshop;
  */
 public class SoyMilk extends DrinkDecorator {
     public SoyMilk(DrinkComponent itemToDecorate) {
-        super(itemToDecorate);
+        super(itemToDecorate, "Soy Milk");
         price = 0.75;
     }
 }

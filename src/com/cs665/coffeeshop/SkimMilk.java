@@ -5,7 +5,7 @@ package com.cs665.coffeeshop;
  */
 public class SkimMilk extends DrinkDecorator {
     public SkimMilk(DrinkComponent itemToDecorate) {
-        super(itemToDecorate);
+        super(itemToDecorate, "Skim Milk");
         price = 0.50;
     }
 }

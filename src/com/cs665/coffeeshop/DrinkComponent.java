@@ -5,8 +5,13 @@ package com.cs665.coffeeshop;
  */
 public abstract class DrinkComponent {
     protected double price;
+    protected String name;
 
     public double getPrice() {
         return price;
     }
+
+    public String getName() { return name; }
+
+    public abstract void display();
 }

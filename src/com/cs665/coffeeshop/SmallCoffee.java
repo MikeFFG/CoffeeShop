@@ -5,6 +5,7 @@ package com.cs665.coffeeshop;
  */
 public class SmallCoffee extends Drink {
     public SmallCoffee() {
+        super("Small Coffee");
         price = 2.25;
     }
 }

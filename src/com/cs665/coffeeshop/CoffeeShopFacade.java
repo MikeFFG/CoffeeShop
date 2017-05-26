@@ -12,6 +12,17 @@ public class CoffeeShopFacade {
         return coffeeShopFacadeSingleton;
     }
 
+    public Order createNewOrder() { return new OrderImpl(); }
+
+    public Order addDrinkToOrder(Order order, DrinkComponent drink) {
+        order.addDrink(drink);
+        return order;
+    }
+
+    public void printOrder(Order order) {
+        order.displayOrder();
+    }
+
     public void printDrinkMenu() {
         Menu.printDrinkMenu();
     }

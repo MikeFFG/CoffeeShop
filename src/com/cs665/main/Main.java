@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.cs665.coffeeshop.CoffeeShopFacade;
 import com.cs665.coffeeshop.Drink;
 import com.cs665.coffeeshop.DrinkComponent;
+import com.cs665.coffeeshop.Order;
 import com.cs665.customerProfile.Profile;
 import com.cs665.customerProfile.ProfileManager;
 import com.cs665.customerProfile.ProfileManagerProxy;
@@ -25,22 +26,40 @@ public class Main {
         // Uses proxy
         Profile customer = getCustomerProfile();
 
-        // Uses decorator
-        DrinkComponent myDrink = getCustomerDrinkChoice();
+        System.out.println("Starting a new order for you.");
+        Order order = coffeeShopFacade.createNewOrder();
 
-        System.out.println("Here is our extras menu. " +
-                "Type the corresponding number to add to your drink. Type 0 to finish order.");
+        while (true) {
+            // Uses decorator
+            DrinkComponent myDrink = getCustomerDrinkChoice();
 
-        boolean keepGoing = true;
-        while (keepGoing) {
-            coffeeShopFacade.printExtrasMenu();
-            int extraChoice = sc.nextInt();
-            if (extraChoice == 0) { break; }
-            myDrink = getCustomerExtraChoice(myDrink, extraChoice);
+            System.out.println("Here is our extras menu. " +
+                    "Type the corresponding number to add to your drink. Type 0 to finish drink.");
+
+            while (true) {
+                coffeeShopFacade.printExtrasMenu();
+                int extraChoice = sc.nextInt();
+                if (extraChoice == 0) { break; }
+                myDrink = getCustomerExtraChoice(myDrink, extraChoice);
+            }
+
+            System.out.println("Your drink costs: ");
+            System.out.format("$%.2f%n", myDrink.getPrice());
+
+            System.out.println("Would you like to add another drink? 1 for yes, 2 for no.");
+            int choice = sc.nextInt();
+            if (choice == 1) {
+                continue;
+            } else if (choice == 2) {
+                coffeeShopFacade.addDrinkToOrder(order, myDrink);
+                break;
+            } else {
+                throw new IllegalArgumentException("Invalid choice");
+            }
         }
 
-        System.out.println("Your drink costs: ");
-        System.out.format("$%.2f%n", myDrink.getPrice());
+        coffeeShopFacade.printOrder(order);
+        System.out.println("Goodbye!");
     }
 
     private static Drink getCustomerDrinkChoice() {
