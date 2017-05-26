@@ -22,13 +22,15 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to my Coffee Shop.");
 
-        Profile customer = getCustomerProfile();    // Uses proxy
+        // Uses proxy
+        Profile customer = getCustomerProfile();
 
         // Uses decorator
         DrinkComponent myDrink = getCustomerDrinkChoice();
 
         System.out.println("Here is our extras menu. " +
                 "Type the corresponding number to add to your drink. Type 0 to finish order.");
+
         boolean keepGoing = true;
         while (keepGoing) {
             coffeeShopFacade.printExtrasMenu();
@@ -46,9 +48,9 @@ public class Main {
         coffeeShopFacade.printDrinkMenu();
         int drinkChoice = sc.nextInt();
         if (drinkChoice == 1) {
-            return CoffeeShopFacade.createLargeCoffee();
+            return coffeeShopFacade.createLargeCoffee();
         } else if (drinkChoice == 2) {
-            return CoffeeShopFacade.createSmallCoffee();
+            return coffeeShopFacade.createSmallCoffee();
         } else {
             throw new IllegalArgumentException("Invalid choice");
         }
@@ -57,11 +59,11 @@ public class Main {
     private static DrinkComponent getCustomerExtraChoice(DrinkComponent drink, int choice) {
         switch (choice) {
             case 1:
-                return CoffeeShopFacade.addExtraShot(drink);
+                return coffeeShopFacade.addExtraShot(drink);
             case 2:
-                return CoffeeShopFacade.addSkimMilk(drink);
+                return coffeeShopFacade.addSkimMilk(drink);
             case 3:
-                return CoffeeShopFacade.addSoyMilk(drink);
+                return coffeeShopFacade.addSoyMilk(drink);
             default:
                 throw new IllegalArgumentException("Invalid choice");
         }
