@@ -1,7 +1,5 @@
 package com.cs665.main;
 
-import java.util.Scanner;
-
 import com.cs665.coffeeshop.CoffeeShopFacade;
 import com.cs665.coffeeshop.Drink;
 import com.cs665.coffeeshop.DrinkComponent;
@@ -9,6 +7,8 @@ import com.cs665.coffeeshop.Order;
 import com.cs665.customerProfile.Profile;
 import com.cs665.customerProfile.ProfileManager;
 import com.cs665.customerProfile.ProfileManagerProxy;
+
+import java.util.Scanner;
 
 /**
  * Created by mburke on 5/23/17.
@@ -109,6 +109,7 @@ public class Main {
         System.out.println("Creating you a new profile.");
         System.out.println("What is your name?");
         String name = sc.next();
+        sc.next(); // consume newLine char
         return new Profile(profileManagerProxy.generateNewCustomerID(), name, null);
     }
 }

@@ -1,6 +1,7 @@
 package com.cs665.coffeeshop;
 
 /**
+ * Base subclass for the Drink Decorator pattern.
  * Created by mburke on 5/23/17.
  */
 public abstract class Drink extends DrinkComponent {
@@ -9,6 +10,7 @@ public abstract class Drink extends DrinkComponent {
     public Drink (String name) {
         this.name = name;
     }
+    
     @Override
     public void display() {
         System.out.print(name + " - ");

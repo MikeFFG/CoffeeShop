@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Concrete implementation of the Order class.
  * Created by mburke on 5/23/17.
  */
 public class OrderImpl extends Order {

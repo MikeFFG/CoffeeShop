@@ -1,6 +1,7 @@
 package com.cs665.coffeeshop;
 
 /**
+ * Abstract Order class for the User to interact with.
  * @author michael.burke
  * @since 5/26/17
  */

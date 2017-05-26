@@ -1,5 +1,7 @@
 package com.cs665.customerProfile;
 
+import com.cs665.coffeeshop.CoffeeShopFacade;
+
 /**
  * @author michael.burke
  * @since 5/26/17
@@ -23,7 +25,8 @@ public class ProfileManagerExpensive extends ProfileManager {
             e.printStackTrace();
         }
         // Just return a fake profile as if there was actually a real API to call
-        return new Profile(customerID, "Default Name", null);
+        return new Profile(customerID, "Default Name",
+                CoffeeShopFacade.getCoffeeShopFacadeSingleton().createLargeCoffee());
     }
 
     public int generateNewCustomerID() {

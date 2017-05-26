@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Proxy class that receives the getProfile call and makes the determination
+ * whether to use the local cache or whether to make the expensive call.
  * Created by mburke on 5/23/17.
  */
 public class ProfileManagerProxy extends ProfileManager {

@@ -1,6 +1,7 @@
 package com.cs665.coffeeshop;
 
 /**
+ * Subclass for the Decorator pattern that gets added on to the Drink base.
  * Created by mburke on 5/23/17.
  */
 public abstract class DrinkDecorator extends DrinkComponent {
