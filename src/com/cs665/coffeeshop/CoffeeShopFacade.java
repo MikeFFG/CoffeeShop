@@ -2,7 +2,7 @@ package com.cs665.coffeeshop;
 
 /**
  * Facade for the coffeeshop package that will be used by the User.
- * Shows of Facade, Singleton and Factory patterns.
+ * Shows off Facade, Singleton and Factory patterns.
  *
  * Created by mburke on 5/23/17.
  */
