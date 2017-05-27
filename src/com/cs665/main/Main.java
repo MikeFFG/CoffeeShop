@@ -29,6 +29,7 @@ public class Main {
         System.out.println("Starting a new order for you.");
         Order order = coffeeShopFacade.createNewOrder();
 
+        // Loop to populate order
         while (true) {
             // Uses decorator
             DrinkComponent myDrink = getCustomerDrinkChoice();
@@ -36,11 +37,12 @@ public class Main {
             System.out.println("Here is our extras menu. " +
                     "Type the corresponding number to add to your drink. Type 0 to finish drink.");
 
+            // Loop to populate extras for this particular drink
             while (true) {
                 coffeeShopFacade.printExtrasMenu();
                 int extraChoice = sc.nextInt();
-                if (extraChoice == 0) { break; }
-                myDrink = getCustomerExtraChoice(myDrink, extraChoice);
+                if (extraChoice == 0) { break; }    // Loop exit criteria
+                myDrink = getCustomerExtraChoice(myDrink, extraChoice); // Decorate drink
             }
 
             System.out.println("Your drink costs: ");
@@ -51,7 +53,7 @@ public class Main {
             int choice = sc.nextInt();
             if (choice == 1) {
                 continue;
-            } else if (choice == 2) {
+            } else if (choice == 2) {   // Loop exit criteria
                 break;
             } else {
                 throw new IllegalArgumentException("Invalid choice");
@@ -62,6 +64,10 @@ public class Main {
         System.out.println("Goodbye!");
     }
 
+    /**
+     * Prompts user for base drink choice
+     * @return Drink
+     */
     private static Drink getCustomerDrinkChoice() {
         System.out.println("Here is our base drinks menu. Type the corresponding number to start an Order.");
         coffeeShopFacade.printDrinkMenu();
@@ -75,6 +81,12 @@ public class Main {
         }
     }
 
+    /**
+     * Parses customers extra choice
+     * @param drink - base drink to decorate
+     * @param choice - choice of extra to decorate with
+     * @return - updated/decorated Drink item
+     */
     private static DrinkComponent getCustomerExtraChoice(DrinkComponent drink, int choice) {
         switch (choice) {
             case 1:
@@ -88,6 +100,10 @@ public class Main {
         }
     }
 
+    /**
+     * Prompt user to input their profile information
+     * @return Profile
+     */
     private static Profile getCustomerProfile() {
         Profile customer = null;
         System.out.println("Do you have a customer ID? If so, enter it now. If not, type 0.");
@@ -105,6 +121,10 @@ public class Main {
         return customer;
     }
 
+    /**
+     * Prompt user to create a new profile
+     * @return Profile
+     */
     private static Profile createNewCustomerProfile() {
         System.out.println("Creating you a new profile.");
         System.out.println("What is your name?");

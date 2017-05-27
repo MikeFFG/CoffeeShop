@@ -1,6 +1,7 @@
 package com.cs665.coffeeshop;
 
 /**
+ * Simple 'menu' class. Not very fleshed out but works for this simple example.
  * Created by mburke on 5/24/17.
  */
 public class Menu {
