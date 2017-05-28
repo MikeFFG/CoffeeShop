@@ -8,6 +8,4 @@ public class EspressoShot extends DrinkDecorator {
         super(itemToDecorate, "Espresso Shot");
         price = 1.25;
     }
-
-
 }
